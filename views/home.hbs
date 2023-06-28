@@ -4,7 +4,7 @@
     class="time-container"
     style="display: flex;justify-content: center;margin-top: 10%;"
   >
-    <h1 class="time">current-time</h1>
+    <h1 id="current-time">{{today}}</h1>
   </div>
   {{! 上下班按鈕 }}
   <div class="checkin&out" style="display: flex;justify-content: center;">
@@ -28,3 +28,8 @@
     >打卡</button>
   </div>
 </div>
+
+<script>
+  setInterval(() => { const currentTime = new Date().toLocaleTimeString();
+  document.getElementById("current-time").textContent = currentTime; }, 1000);
+</script>
