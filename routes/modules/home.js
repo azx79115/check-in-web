@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const moment = require("moment");
+const homeController = require("../../controller/home-controller");
 
-router.get("/", (req, res) => {
-  const today = moment().format("YYYY/MM/DD HH:mm:ss");
-  res.render("home", { today });
-});
+router.post("/checkin", homeController.checkIn);
+router.post("/checkout", homeController.checkOut);
+router.get("/", homeController.renderHome);
 
 module.exports = router;
