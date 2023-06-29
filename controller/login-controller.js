@@ -12,7 +12,6 @@ const loginController = {
   },
   signIn: (req, res) => {
     req.flash("success_messages", "登入成功!");
-    console.log("成功");
     res.redirect("/");
   },
   signUp: async (req, res, next) => {
@@ -29,6 +28,11 @@ const loginController = {
     } catch (err) {
       next(err);
     }
+  },
+  logout: (req, res) => {
+    req.flash("success_messages", "登出成功");
+    req.logout();
+    res.redirect("/login/signin");
   },
 };
 
