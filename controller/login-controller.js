@@ -29,10 +29,12 @@ const loginController = {
       next(err);
     }
   },
-  logout: (req, res) => {
+  logout: (req, res, next) => {
     req.flash("success_messages", "登出成功");
-    req.logout();
-    res.redirect("/login/signin");
+    req.logout((err) => {
+      if (err) return next(err);
+      res.redirect("/");
+    });
   },
 };
 
