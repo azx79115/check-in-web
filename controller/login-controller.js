@@ -11,7 +11,7 @@ const loginController = {
     res.render("signup");
   },
   signIn: (req, res) => {
-    req.flash("success_messages", "登入成功!");
+    req.flash("success_msg", "登入成功!");
     res.redirect("/");
   },
   signUp: async (req, res, next) => {
@@ -23,17 +23,17 @@ const loginController = {
       if (existingAccount) throw new Error("Account already exists");
       const hash = await bcrypt.hash(password, 10);
       const newUser = await User.create({ name, account, password: hash });
-      req.flash("success_messages", "註冊成功");
+      req.flash("success_msg", "註冊成功");
       res.redirect("/login/signin");
     } catch (err) {
       next(err);
     }
   },
   logout: (req, res, next) => {
-    req.flash("success_messages", "登出成功");
     req.logout((err) => {
       if (err) return next(err);
-      res.redirect("/");
+      req.flash("success_msg", "登出成功");
+      res.redirect("/login/signin");
     });
   },
 };

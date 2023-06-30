@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const loginController = require("../../controller/login-controller");
 const passport = require("../../config/passport");
+const { authenticator } = require("../../middleware/auth");
 
 router.get("/signin", loginController.signInPage);
 router.post(
@@ -14,6 +15,6 @@ router.post(
 );
 router.get("/signup", loginController.signUpPage);
 router.post("/signup", loginController.signUp);
-router.get("/logout", loginController.logout);
+router.get("/logout", authenticator, loginController.logout);
 
 module.exports = router;
