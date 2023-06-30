@@ -6,6 +6,7 @@ const home = require("./modules/home");
 const user = require("./modules/user");
 const login = require("./modules/login");
 const { authenticator } = require("../middleware/auth");
+const { generalErrorHandler } = require("../middleware/err-handler");
 
 //紀錄
 router.use("/record", authenticator, record);
@@ -17,5 +18,6 @@ router.use("users", authenticator, user);
 router.use("/login", login);
 //首頁
 router.use("/", authenticator, home);
+router.use("/", generalErrorHandler);
 
 module.exports = router;
