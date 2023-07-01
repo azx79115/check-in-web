@@ -21,49 +21,54 @@ const homeController = {
       } else {
         today = moment().format("YYYY-MM-DD");
       }
-      //獲取該用戶今天的所有records
-      const records = await Record.findAll({
-        where: { UserId, date: today },
-        raw: true,
-      });
 
-      //獲取該用戶在今天的state資料
-      const state = await State.findOne({ where: { UserId, date: today } });
-      // 設定條件如果還未有狀態，新建立一個，如果已經存在，則更新資料，並設置條件式判斷時間是否大於8小時來調整出缺勤狀態!
-      if (!state) {
-        await State.create({
+      //確認今天是否已經打卡
+      const isRecord = await Record.findOne({ where: { UserId, date: today } });
+      if (!isRecord) {
+        //新增紀錄
+        await Record.create({
           UserId,
           date: today,
+          checkIn: nowTime,
           state: "值勤中",
         });
       } else {
+        //獲取該用戶今天的所有records
+        const records = await Record.findAll({
+          where: { UserId, date: today },
+          raw: true,
+        });
         const firstTime = records[0].createdAt;
 
-        const lastTime = records[records.length - 1].createdAt;
+        const lastTime = moment();
 
         const diffHours = moment(lastTime).diff(firstTime, "hours");
 
         const diffTime = moment
           .utc(moment(lastTime, "HH:mm:ss").diff(moment(firstTime, "HH:mm:ss")))
           .format("HH:mm:ss");
-
+        // 設置條件式判斷時間是否大於8小時來調整出缺勤狀態!
         if (diffHours >= 8) {
-          await state.update({ state: "出勤", durations: diffTime });
+          await await Record.create({
+            UserId,
+            date: today,
+            checkIn: nowTime,
+            state: "出勤",
+            durations: diffTime,
+          });
         } else {
-          await state.update({ state: "缺勤", durations: diffTime });
+          await Record.create({
+            UserId,
+            date: today,
+            checkIn: nowTime,
+            state: "缺勤",
+            durations: diffTime,
+          });
         }
-      }
-      //新增紀錄
-      const newRecord = await Record.create({
-        UserId,
-        date: today,
-        checkIn: nowTime,
-      });
-      //檢查今日是否已經打過卡，有的話代表下班了!
-      if (records.length > 0) {
         req.flash("success_msg", "下班了辛苦囉!");
         return res.redirect("/");
       }
+
       req.flash("success_msg", "打卡成功");
       return res.redirect("/");
     } catch (err) {
