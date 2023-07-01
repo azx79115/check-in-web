@@ -9,14 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Record.belongsTo(models.User, { foreignKey: "UserId", as: "userRecord" });
+      Record.belongsTo(models.User, { foreignKey: "UserId" });
+      Record.belongsTo(models.State, { foreignKey: "date" });
     }
   }
   Record.init(
     {
       UserId: DataTypes.INTEGER,
       date: DataTypes.DATEONLY,
-      checkIn: DataTypes.DATE,
+      checkIn: DataTypes.TIME,
     },
     {
       sequelize,

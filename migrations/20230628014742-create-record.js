@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.DATEONLY,
       },
       checkIn: {
-        type: Sequelize.DATE,
+        type: Sequelize.TIME,
       },
       createdAt: {
         allowNull: false,

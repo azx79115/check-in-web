@@ -16,7 +16,7 @@
 {{>message}}
 <script>
   setInterval(() => { 
-    const currentTime = new Date().toLocaleTimeString();
+    const currentTime = moment().format("HH:mm:ss");
     document.getElementById("current-time").textContent = currentTime; 
   }, 1000);
 </script>
