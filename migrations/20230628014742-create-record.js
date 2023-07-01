@@ -25,9 +25,6 @@ module.exports = {
       checkIn: {
         type: Sequelize.DATE,
       },
-      checkOut: {
-        type: Sequelize.DATE,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

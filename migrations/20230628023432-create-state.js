@@ -17,19 +17,11 @@ module.exports = {
         },
         allowNull: false,
       },
-      RecordId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: { tableName: "Records" },
-          key: "id",
-        },
-        allowNull: false,
+      date: {
+        type: Sequelize.DATEONLY,
       },
       state: {
         type: Sequelize.STRING,
-      },
-      durations: {
-        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       UserId: DataTypes.INTEGER,
       date: DataTypes.DATEONLY,
       checkIn: DataTypes.DATE,
-      checkOut: DataTypes.DATE,
     },
     {
       sequelize,
