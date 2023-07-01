@@ -27,7 +27,12 @@ const loginController = {
         throw new Error("這個帳號已經註冊過了!");
       }
       const hash = await bcrypt.hash(password, 10);
-      const newUser = await User.create({ name, account, password: hash });
+      const newUser = await User.create({
+        name,
+        account,
+        password: hash,
+        isAdmin: "user",
+      });
       req.flash("success_msg", "註冊成功");
       res.redirect("/login/signin");
     } catch (err) {

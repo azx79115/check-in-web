@@ -9,6 +9,7 @@ const mime = require("mime");
 const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
+const method = require("method-override");
 
 // 樣板引擎
 const hbs = exphbs.create({
@@ -21,6 +22,8 @@ const hbs = exphbs.create({
 });
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
+//method
+app.use(method("_method"));
 //body資料
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

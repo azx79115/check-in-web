@@ -1,5 +1,4 @@
 const { User, Record } = require("../models");
-const moment = require("moment");
 
 const homeController = {
   // 渲染首頁畫面
@@ -11,8 +10,10 @@ const homeController = {
   checkIn: async (req, res, next) => {
     try {
       const UserId = req.user.id;
+      //存入時間格式待確認?
       const now = new Date();
       const nowTime = now.toLocaleTimeString();
+      const ISO = new Date().toISOString();
       let today;
       //檢查當前時間是否小於5點，小於5點以前一日計算
       if (now.getHours() < 5) {
@@ -21,14 +22,13 @@ const homeController = {
       } else {
         today = now.toLocaleDateString();
       }
-      const record = await Record.findOne({ where: { UserId, date: today } });
+      const record = await Record.findAll({ where: { UserId, date: today } });
       //新增紀錄
       const newRecord = await Record.create({
         UserId,
         date: today,
         checkIn: now,
       });
-
       //檢查今日是否已經打過卡，有的話代表下班了!
       if (record) {
         req.flash("success_msg", "下班了辛苦囉!");

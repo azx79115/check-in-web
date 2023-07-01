@@ -13,7 +13,7 @@ router.use("/record", authenticator, record);
 //後台
 router.use("/admin", authenticator, admin);
 //使用者
-router.use("users", authenticator, user);
+router.use("/users", authenticator, user);
 //登入
 router.use("/login", login);
 //首頁
