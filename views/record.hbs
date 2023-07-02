@@ -2,32 +2,21 @@
   <thead>
     <tr>
       <th scope="col">日期</th>
-      <th scope="col">ID</th>
       <th scope="col">Name</th>
-      <th scope="col">上班時間</th>
-      <th scope="col">下班時間</th>
+      <th scope="col">打卡時間</th>
       <th scope="col">值勤狀態</th>
       <th scope="col">值勤時間</th>
     </tr>
   </thead>
   <tbody>
-
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    {{#each records}}
+      <tr>
+        <th>{{this.date}}</th>
+        <td>{{User.name}}</td>
+        <td>{{this.checkIn}}</td>
+        <td>{{this.state}}</td>
+        <td>{{this.durations}}</td>
+      </tr>
+    {{/each}}
   </tbody>
 </table>
