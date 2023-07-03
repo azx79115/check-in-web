@@ -1,1 +1,21 @@
 <h1>後台</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">出勤</th>
+      <th scope="col">缺勤</th>
+      <th scope="col">值勤中</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each records}}
+      <tr>
+        <th>{{User.name}}</th>
+        <td>{{User.name}}</td>
+        <td>{{this.checkIn}}</td>
+        <td>{{this.state}}</td>
+        <td>{{this.durations}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
