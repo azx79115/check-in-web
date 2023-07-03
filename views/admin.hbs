@@ -8,14 +8,22 @@
     </tr>
   </thead>
   <tbody>
-    {{#each records}}
-      <tr>
-        <th>{{User.name}}</th>
-        <td>{{User.name}}</td>
-        <td>{{this.checkIn}}</td>
-        <td>{{this.state}}</td>
-        <td>{{this.durations}}</td>
-      </tr>
-    {{/each}}
+    <tr>
+      <td>
+        {{#each states.attendance}}
+          {{this.User.account}}<br />
+        {{/each}}
+      </td>
+      <td>
+        {{#each states.absent}}
+          {{this.User.account}}<br />
+        {{/each}}
+      </td>
+      <td>
+        {{#each states.Attending}}
+          {{this.User.account}}<br />
+        {{/each}}
+      </td>
+    </tr>
   </tbody>
 </table>
