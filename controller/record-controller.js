@@ -3,16 +3,25 @@ const { User, Record, State } = require("../models");
 const recordController = {
   // 渲染record畫面
   recordPage: async (req, res, next) => {
-    const UserId = req.user.id;
-    const records = await Record.findAll({
-      where: { UserId },
-      nest: true,
-      raw: true,
-      include: [{ model: User, attributes: ["id", "name"] }],
-      order: [["createdAt", "DESC"]],
-    });
+    try {
+      const UserId = req.user.id;
+      const records = await Record.findAll({
+        where: { UserId },
+        nest: true,
+        raw: true,
+        include: [
+          { model: User, attributes: ["id", "name"] },
+          { model: State, attributes: ["id", "durations", "state"] },
+        ],
+        attributes: ["id", "date", "checkIn"],
+        order: [["createdAt", "DESC"]],
+      });
+      console.log("🚀 ~ records:", records);
 
-    res.render("record", { records });
+      res.render("record", { records });
+    } catch (err) {
+      next(err);
+    }
   },
 };
 

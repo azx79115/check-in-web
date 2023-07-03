@@ -21,15 +21,12 @@ const homeController = {
       } else {
         today = moment().format("YYYY-MM-DD");
       }
-
-      //確認今天是否已經打卡
-      const isRecord = await Record.findOne({ where: { UserId, date: today } });
-      if (!isRecord) {
-        //新增紀錄
-        await Record.create({
+      //獲取該用戶在今天的state資料
+      let state = await State.findOne({ where: { UserId, date: today } });
+      if (!state) {
+        state = await State.create({
           UserId,
           date: today,
-          checkIn: nowTime,
           state: "值勤中",
         });
       } else {
@@ -49,26 +46,23 @@ const homeController = {
           .format("HH:mm:ss");
         // 設置條件式判斷時間是否大於8小時來調整出缺勤狀態!
         if (diffHours >= 8) {
-          await await Record.create({
-            UserId,
-            date: today,
-            checkIn: nowTime,
+          await state.update({
             state: "出勤",
             durations: diffTime,
           });
         } else {
-          await Record.create({
-            UserId,
-            date: today,
-            checkIn: nowTime,
+          await state.update({
             state: "缺勤",
             durations: diffTime,
           });
         }
-        req.flash("success_msg", "下班了辛苦囉!");
-        return res.redirect("/");
       }
-
+      await Record.create({
+        UserId,
+        StateId: state.id,
+        date: today,
+        checkIn: nowTime,
+      });
       req.flash("success_msg", "打卡成功");
       return res.redirect("/");
     } catch (err) {
