@@ -1,0 +1,38 @@
+<div class="container">
+  <h1 class="my-4">個人帳戶設定</h1>
+  {{>message}}
+  <form action="/users/settings?_method=PATCH" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        value="{{user.name}}"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password2" class="form-label">PasswordCheck</label>
+      <input
+        type="password"
+        class="form-control"
+        id="passwordCheck"
+        name="passwordCheck"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">提交</button>
+  </form>
+</div>

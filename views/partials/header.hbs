@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">打卡出勤網站</a>
     <button
@@ -20,9 +20,11 @@
         <li class="nav-item">
           <a class="nav-link" href="/record">打卡紀錄</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin">後台</a>
-        </li>
+        {{#ifCond user.isAdmin "admin"}}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">後台</a>
+          </li>
+        {{/ifCond}}
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -35,13 +37,26 @@
             設定
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">開發中</a></li>
+            <li><a
+                class="dropdown-item"
+                href="/users/settings"
+              >修改帳戶資料</a></li>
             <li><a class="dropdown-item" href="#">開發中</a></li>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#">開發中</a></li>
           </ul>
         </li>
       </ul>
+      <div class="navbar-nav ml-auto">
+        <a class="navbar-brand">
+          {{#if isAuthenticated}}{{user.name}}'s 打卡 {{/if}}
+        </a>
+        {{#if isAuthenticated}}
+          <a class="nav-link" href="/login/logout">登出</a>
+        {{else}}
+          <a class="nav-link" href="/login/signin">登入</a>
+        {{/if}}
+      </div>
     </div>
   </div>
 </nav>

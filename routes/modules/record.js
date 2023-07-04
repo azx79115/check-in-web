@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const recordController = require("../../controller/record-controller");
 
-router.get("/", (req, res) => {
-  res.render("record");
-});
+router.get("/", recordController.recordPage);
 
 module.exports = router;

@@ -11,22 +11,15 @@ module.exports = {
       },
       UserId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Users",
-          },
-          key: "id",
-        },
-        allowNull: false,
+      },
+      StateId: {
+        type: Sequelize.STRING,
       },
       date: {
         type: Sequelize.DATEONLY,
       },
       checkIn: {
-        type: Sequelize.DATE,
-      },
-      checkOut: {
-        type: Sequelize.DATE,
+        type: Sequelize.TIME,
       },
       createdAt: {
         allowNull: false,

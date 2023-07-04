@@ -1,23 +1,22 @@
-<div class="body">
-  {{! 當前時間 }}
-  <div
-    class="time-container"
-    style="display: flex;justify-content: center;margin-top: 10%;"
-  >
-    <h1 id="current-time">{{today}}</h1>
-  </div>
-  {{! 上下班按鈕 }}
-  <div class="checkin&out" style="display: flex;justify-content: center;">
-    <form action="/checkin" method="POST" style="margin: 5%;width: 80px;">
-      <button type="submit" class="btn btn-primary">上班</button>
-    </form>
-    <form action="/checkout" method="post" style="margin: 5%;width: 80px;">
-      <button type="submit" class="btn btn-danger">下班</button>
-    </form>
+<div class="container text-center my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card p-4 shadow-lg">
+        <h1 id="current-day" class="display-4">{{today}}</h1>
+        <h1 id="current-time" class="display-1">{{nowTime}}</h1>
+        <div class="d-grid gap-2 col-6 mx-auto my-4">
+          <form action="/checkin" method="POST">
+            <button type="submit" class="btn btn-warning btn-lg">打卡</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
+{{>message}}
 <script>
-  setInterval(() => { const currentTime = new Date().toLocaleTimeString();
-  document.getElementById("current-time").textContent = currentTime; }, 1000);
+  setInterval(() => { 
+    const currentTime = moment().format("HH:mm:ss");
+    document.getElementById("current-time").textContent = currentTime; 
+  }, 1000);
 </script>

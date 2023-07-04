@@ -1,1 +1,33 @@
 <h1>後台</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">日期</th>
+      <th scope="col">帳號</th>
+      <th scope="col">出勤狀態</th>
+      <th scope="col">更改出勤狀態</th>
+      <th scope="col">值勤時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each attendance}}
+      <tr>
+        <td>{{this.date}}</td>
+        <td>{{User.account}}</td>
+        <td>{{this.state}}</td>
+        <td>
+          {{#ifCond this.state "缺勤"}}
+            <form
+              action="/admin/states/{{this.id}}?_method=PATCH"
+              method="post"
+            >
+              <input type="hidden" name="isAdmin" value="false" />
+              <button type="submit" class="btn btn-primary">改為出勤</button>
+            </form>
+          {{/ifCond}}
+        </td>
+        <td>{{this.durations}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
