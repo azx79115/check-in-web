@@ -20,9 +20,11 @@
         <li class="nav-item">
           <a class="nav-link" href="/record">打卡紀錄</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin">後台</a>
-        </li>
+        {{#ifCond user.isAdmin "admin"}}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">後台</a>
+          </li>
+        {{/ifCond}}
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
