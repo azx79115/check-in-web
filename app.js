@@ -10,6 +10,7 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
 const method = require("method-override");
+const handlebarsHelpers = require("./helpers/handlebars-helpers");
 
 // 樣板引擎
 const hbs = exphbs.create({
@@ -19,6 +20,7 @@ const hbs = exphbs.create({
   runtimeOptions: {
     allowProtoPropertiesByDefault: true,
   },
+  helpers: handlebarsHelpers,
 });
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");

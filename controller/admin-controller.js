@@ -7,29 +7,27 @@ const adminController = {
     try {
       const UserId = req.user.id;
       const today = moment().format("YYYY-MM-DD");
-      const absent = await State.findAll({
-        where: { state: "缺勤", date: today },
-        nest: true,
-        raw: true,
-        include: [{ model: User, attributes: ["id", "name", "account"] }],
-        order: [["createdAt", "DESC"]],
-      });
       const attendance = await State.findAll({
-        where: { state: "出勤", date: today },
-        nest: true,
-        raw: true,
-        include: [{ model: User, attributes: ["id", "name", "account"] }],
-        order: [["createdAt", "DESC"]],
-      });
-      const Attending = await State.findAll({
-        where: { state: "值勤中", date: today },
         nest: true,
         raw: true,
         include: [{ model: User, attributes: ["id", "name", "account"] }],
         order: [["createdAt", "DESC"]],
       });
 
-      res.render("admin", { states: { absent, attendance, Attending } });
+      res.render("admin", { attendance });
+    } catch (err) {
+      next(err);
+    }
+  },
+  changeState: async (req, res, next) => {
+    try {
+      const StateId = req.params.id;
+      const state = await State.findByPk(StateId);
+      await state.update({
+        state: "出勤",
+      });
+      req.flash("success_msg", "更改成功");
+      res.redirect("/admin");
     } catch (err) {
       next(err);
     }
