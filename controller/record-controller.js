@@ -16,7 +16,6 @@ const recordController = {
         attributes: ["id", "date", "checkIn"],
         order: [["createdAt", "DESC"]],
       });
-      console.log("🚀 ~ records:", records);
 
       res.render("record", { records });
     } catch (err) {
