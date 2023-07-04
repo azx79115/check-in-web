@@ -21,13 +21,11 @@ const homeController = {
         today = moment().subtract(1, "days").format("YYYYMMDD");
       } else {
         today = moment().format("YYYYMMDD");
-        console.log("🚀 ~ today:", today);
       }
-
+      //取得國定放假日並且日期是否與今天相同
       const isHoliday = holidays.some(
         (item) => item.isHoliday === true && item.date === today.toString()
       );
-      console.log("🚀 ~ isHoliday:", isHoliday);
       if (isHoliday) {
         req.flash("warning_msg", "今天放假不用打卡!");
         return res.redirect("/");

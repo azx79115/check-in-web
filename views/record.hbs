@@ -5,7 +5,7 @@
       <th scope="col">日期</th>
       <th scope="col">名稱</th>
       <th scope="col">打卡時間</th>
-      <th scope="col">值勤狀態</th>
+      <th scope="col">值勤時間</th>
     </tr>
   </thead>
   <tbody>
@@ -14,7 +14,7 @@
         <th>{{this.date}}</th>
         <td>{{User.name}}</td>
         <td>{{this.checkIn}}</td>
-        <td>{{State.state}}</td>
+        <td>{{State.durations}}</td>
       </tr>
     {{/each}}
   </tbody>

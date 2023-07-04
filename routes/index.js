@@ -5,13 +5,13 @@ const admin = require("./modules/admin");
 const home = require("./modules/home");
 const user = require("./modules/user");
 const login = require("./modules/login");
-const { authenticator } = require("../middleware/auth");
+const { authenticator, authenticatedAdmin } = require("../middleware/auth");
 const { generalErrorHandler } = require("../middleware/err-handler");
 
 //紀錄
 router.use("/record", authenticator, record);
 //後台
-router.use("/admin", authenticator, admin);
+router.use("/admin", authenticatedAdmin, admin);
 //使用者
 router.use("/users", authenticator, user);
 //登入

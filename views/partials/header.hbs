@@ -44,15 +44,17 @@
             <li><a class="dropdown-item" href="#">開發中</a></li>
           </ul>
         </li>
+      </ul>
+      <div class="navbar-nav ml-auto">
+        <a class="navbar-brand">
+          {{#if isAuthenticated}}{{user.name}}'s 打卡 {{/if}}
+        </a>
         {{#if isAuthenticated}}
           <a class="nav-link" href="/login/logout">登出</a>
         {{else}}
           <a class="nav-link" href="/login/signin">登入</a>
         {{/if}}
-        <a class="navbar-brand" href="/">
-          {{#if isAuthenticated}}{{user.name}}'s 打卡 {{/if}}
-        </a>
-      </ul>
+      </div>
     </div>
   </div>
 </nav>
