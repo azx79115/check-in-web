@@ -70,5 +70,5 @@ app.use(router);
 
 // 伺服器
 app.listen(port, () => {
-  console.log("App is running on server");
+  console.log("App is running on server!");
 });
