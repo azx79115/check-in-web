@@ -1,6 +1,9 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 const Handlebars = require("handlebars");
 const exphbs = require("express-handlebars");
 const router = require("./routes");
@@ -44,7 +47,7 @@ app.use(
 // session認證
 app.use(
   session({
-    secret: "ThisIsMySecret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
   })
