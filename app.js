@@ -7,8 +7,6 @@ const port = process.env.PORT || 3000;
 const Handlebars = require("handlebars");
 const exphbs = require("express-handlebars");
 const router = require("./routes");
-const path = require("path");
-const mime = require("mime");
 const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
@@ -32,17 +30,6 @@ app.use(method("_method"));
 //body資料
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// 載入靜態資料
-app.use(
-  express.static("public", {
-    setHeaders: (res, path) => {
-      const mimeType = mime.getType(path);
-      if (mimeType) {
-        res.set("Content-Type", mimeType);
-      }
-    },
-  })
-);
 
 // session認證
 app.use(
