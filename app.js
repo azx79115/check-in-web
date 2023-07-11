@@ -25,6 +25,7 @@ const hbs = exphbs.create({
 });
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
+app.use(express.static("public"));
 //method
 app.use(method("_method"));
 //body資料

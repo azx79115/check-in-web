@@ -1,22 +1,39 @@
+<link rel="stylesheet" href="/css/style.css" />
 <div class="container text-center my-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card p-4 shadow-lg">
         <h1 id="current-day" class="display-4">{{today}}</h1>
         <h1 id="current-time" class="display-1">{{nowTime}}</h1>
+        <div class="clock-container">
+          <div class="clock">
+                    <div class="hand hour data-hour-hand"></div>
+                    <div class="hand minute data-minute-hand"></div>
+                    <div class="hand second data-second-hand"></div>
+                    <div class="number number1">1</div>
+                    <div class="number number2">2</div>
+                    <div class="number number3">3</div>
+                    <div class="number number4">4</div>
+                    <div class="number number5">5</div>
+                    <div class="number number6">6</div>
+                    <div class="number number7">7</div>
+                    <div class="number number8">8</div>
+                    <div class="number number9">9</div>
+                    <div class="number number10">10</div>
+                    <div class="number number11">11</div>
+                    <div class="number number12">12</div>
+            </div>
+          </div>
         <div class="d-grid gap-2 col-6 mx-auto my-4">
           <form action="/checkin" method="POST">
             <button type="submit" class="btn btn-warning btn-lg">打卡</button>
           </form>
         </div>
+        
       </div>
     </div>
   </div>
 </div>
 {{>message}}
-<script>
-  setInterval(() => { 
-    const currentTime = moment().format("HH:mm:ss");
-    document.getElementById("current-time").textContent = currentTime; 
-  }, 1000);
-</script>
+
+<script src="/js/style.js"></script>
