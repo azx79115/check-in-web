@@ -4,7 +4,7 @@
 
 ## CheckIn-Web URL
 
-https://checkin-web-c3b376e1c583.herokuapp.com/login/signin
+DEMOD: http://checkin.ap-northeast-1.elasticbeanstalk.com/
 
 ![image](./image/首頁.png)
 ![image](./image/後臺.png)
