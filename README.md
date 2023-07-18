@@ -4,7 +4,7 @@
 
 ## CheckIn-Web URL
 
-DEMOD: http://checkin.ap-northeast-1.elasticbeanstalk.com/
+DEMO: http://checkin.ap-northeast-1.elasticbeanstalk.com/
 
 ![image](./image/首頁.png)
 ![image](./image/後臺.png)
