@@ -7,6 +7,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable": "CLEARDB_DATABASE_URL"
+    "username": "root",
+    "password": "123456",
+    "database": "checkin",
+    "host": "34.81.115.162",
+    "dialect": "mysql"
   }
 }
