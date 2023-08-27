@@ -10,7 +10,7 @@
     "username": "root",
     "password": "123456",
     "database": "checkin",
-    "host": "34.81.115.162",
+    "host": "ultra-reflector-391807:asia-east1:check-in",
     "dialect": "mysql"
   }
 }
